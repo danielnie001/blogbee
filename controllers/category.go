@@ -30,6 +30,10 @@ func (c *CategoryController) Get() {
 		c.Redirect("/category",302)
 		return
 	case "del":
+		if !Login(c.Ctx){
+			c.Redirect("/login",302)
+			return
+		}
 		id :=c.GetString("id")
 		if len(id) == 0 {
 			break
